@@ -1,0 +1,32 @@
+import numpy as np 
+from numpy import newaxis
+# a=np.array([1,1,1])
+# print("a",a)
+# b = np.array([[1,2,3], (4,5,6)],dtype="float64")
+# print("b",b)
+# c=a+b
+# d=np.ones( (3333,44,44) )
+# print("d",d)
+# e=np.arange(0,100,10)
+# e=e*e
+# print("e",e)
+# e2=np.linspace(1,10,100)
+# print("e2",e2)
+# m1=np.array([[1,2,3], (4,5,6)]) 
+# m2=np.array([[1,1],[2,2],[3,3]]) 
+# m3=m1@m2
+# print("m1\n",m1)
+# print("m2\n",m2)
+# print("m3\n",m3)
+# print(np.sqrt(m3))
+# print(np.sqrt(m3))
+# print(np.mean(m3))
+# print(np.median(m3))
+r1=np.floor(10*np.random.random((3,4)))
+print("r",r1)
+r2=r1.copy()
+print("r",r2)
+print(r1 is r2)
+# a = np.array([4.,2.])
+# print(a)
+# print(a[:,newaxis])
