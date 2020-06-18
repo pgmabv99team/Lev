@@ -1,7 +1,7 @@
 #Array append/pop 
 #Array pop till reduced to nothing
 #New while loop
-x=["potato","MajestikBirb","Beer","WhIsKey BOrB"]
+x=["potato","MajestikBorb","Beer","WhIsKey BOrB"]
 y=[]
 i=0
 xl=len(x)
