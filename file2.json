@@ -1,0 +1,16 @@
+{
+    "states": [
+        {
+            "state": "NY",
+            "population": 200
+        },
+        {
+            "state": "NY",
+            "population": 2020
+        },
+        {
+            "state": "CT",
+            "population": 2020
+        }
+    ]
+}
