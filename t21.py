@@ -5,11 +5,12 @@ def MyFunction(p):
 
     sum = 0
     neven = 0
-    if x[0] % 2 == 0:
-        mymax = x[0]
-        mymaxfound = True
-    else:
-        mymaxfound = False
+    mymax=None
+    # if x[0] % 2 == 0:
+    #     mymax = x[0]
+    #     mymaxfound = True
+    # else:
+    #     mymaxfound = False
     # main loop
     i = 0
     while i < pl:
@@ -17,11 +18,11 @@ def MyFunction(p):
             # working on sum
             sum = sum+p[i]
             neven += 1
-            if mymaxfound==True:
-                if p[i] > mymax:
-                    mymax = p[i] 
-            else:
+            if mymax==None:
                 mymax=p[i]
+            else:
+                if p[i] > mymax:
+                    mymax = p[i]
 
         i = i+1
 
@@ -29,11 +30,8 @@ def MyFunction(p):
         ave = sum/neven
     else:
         ave = "|-|OLY SHIT THIS TOOK A LONG TIME"
-    if mymaxfound==False:
-        mymaxfinal="No"
-    else:
-        mymaxfinal=mymax
-    return ave, mymaxfinal
+
+    return ave, mymax
 
 
 # Main Function
