@@ -4,8 +4,8 @@ class person:
 
         self.name = pname
 
-        if page > 100:
-            page = None
+        # if page > 100:
+        #     page = None
         self.age = page
 
         self.gender = pgender.upper()
@@ -18,6 +18,15 @@ class person:
         if phcolor == "":
             phcolor = "bald"
         self.hcolor = phcolor
+    
+    def GoodlyOrUngoodly(self):
+        if self.age>=35 or self.hcolor=="bald":
+            return "bad"
+        else:
+            return "good"
+
+    def MakeBald(self):
+        self.hcolor="bald"
 
 
 people = []
@@ -28,13 +37,29 @@ people.append(x)
 x = person("Papa", 60, "male", "")
 people.append(x)
 x=person("Lev",12,"male","straw")
+people.append(x)
+x=person("Whiskey",10000,"LGBTQ","green")
+people.append(x)
 peoplel = len(people)
-i = 0
-mymax=people[i].age
-while i < peoplel:
-    print(people[i].name, people[i].age, people[i].gender,
-          people[i].yob, people[i].hcolor)
-    if people[i].age>mymax:
-        mymax=people[i].age
-    i = i+1
-print(mymax)
+
+
+
+# mymax=people[i].age
+# while i < peoplel:
+#     print(people[i].name, people[i].age, people[i].gender,
+#           people[i].yob, people[i].hcolor)
+#     if people[i].age>mymax:
+#         mymax=people[i].age
+#     i = i+1
+# print(mymax)
+# i = 0
+
+# while i<peoplel:
+#     print(people[i].name,people[i].GoodlyOrUngoodly())
+#     if people[i].name=="Whiskey":
+#         people[i].MakeBald()
+#     print(people[i].hcolor)
+#     i=i+1
+
+for x in people:
+    print(x.age)
