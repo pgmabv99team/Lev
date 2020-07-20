@@ -16,6 +16,17 @@ def MyFunc(p,n):
             t.append(p[irows][icols]*n)
     return t
 
+def MyFuncLev(p,n):
+    nrows=len(p)
+    ncols=len(p[0])
+    t=[]
+    for irows in range(nrows):
+        row=[]
+        for icols in range(ncols):
+            row.append(p[irows][icols]*n)
+        t.append(row)
+    return t
+
 def MyFunc2(p,n):
     nrows=len(p)
     ncols=len(p[0])
@@ -46,6 +57,6 @@ xx = [[23, 35, 43],
       [6, 15, 8]]
 # print(xx)
 # print(DataFrame(xx))
-v=34    
-MyFunc3(v,10)
-print(v)
+res=MyFuncLev(xx,10)
+print(res)
+
