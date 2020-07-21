@@ -2,8 +2,7 @@
 # for 2 dimensional matrix.
 # using "for" loop
 #  passing lists and scalar
-import numpy
-from pandas import *
+
 
 
 def MyFunc(p,n):
