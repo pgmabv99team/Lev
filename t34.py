@@ -4,14 +4,13 @@ def FindBlanks(p):
     pl=len(p)
     iBlank=None
     iBWord=0
-    iBlankList=[]
     WordList=[]
     for i in range(pl):
         print(i,p[i])
         if p[i]==" ":
             iBlank=i
-            iBlankList.append(iBlank)
-            WordList.append(p[iBWord:iBlank])
+            if len(p[iBWord:iBlank])>0:
+                WordList.append(p[iBWord:iBlank])
             print("blank space at position",iBlank,p[iBWord:iBlank])
             iBWord=iBlank+1
 
