@@ -1,67 +1,51 @@
-xList=[23,34,35]
-# print(xList[0]*2)
+# Dictionary of tokenised words
 
-# for x in xList:
-#     print(x,x*2)
-# print(len(xList))
-xl=len(xList)
-# yList=[]
-
-
-# xList.insert(0,"walrus")
-# xList.insert(0,"walrus")
-# xList.insert(2,"cabbage")
-# a=xList.index("walrus")
-# print(xList,a)
-
-# for i in range(len(words)):
-#     print(words[i])
-
-
-def find_key(xDict,key):
+import string
+def find_key(xDict, key):
     for word in xDict:
-        if word==key:
+        if word == key:
             return True
     return False
-    
 
+punc=string.punctuation
+def make_word_list(p):
+    pl = len(p)
+    iSep = None
+    iBWord = 0
+    WordList = []
+    for i in range(pl):
+        print(i, p[i])
+        # if (p[i] == " ") or (p[i]=="\n") or (p[i]=="!") :
+        if (p[i] in punc) or (p[i]=="\n"):
+            iSep = i
+            if len(p[iBWord:iSep]) > 0:
+                WordList.append(p[iBWord:iSep])
+            print("separator space at position", iSep, p[iBWord:iSep])
+            iBWord = iSep+1
 
+    return WordList
 
+# convert text string to array of tokens
+f = open("data_35.txt", "r")
+data=f.read()+" "
+print(data)
+phrase = " even  ate  nine potato Lev BIGGER BADDER BETTER Lev Lev Epic LevLev "
+words = make_word_list(data)
+print(words)
 
-
-# xDict={"papa":1}
-
-# res=find_key(xDict,"papa")
-# print("result:",res)
-# res=find_key(xDict,"mama")
-# print("result:",res)
-
-xDict={}
-words=["Papa","Mama","Lev","Whiskey","Lev"]
+# build a dictionary key=word, value=count
+xDict = {}
 for word in words:
-    found=find_key(xDict,word)
-    if found==True:
-        xDict[word]=xDict[word]+1
+    found = find_key(xDict, word)
+    if found == True:
+        xDict[word] = xDict[word]+1
     else:
-        xDict[word]=1
+        xDict[word] = 1
     # xDict[word] +=1
     print(found)
+
+# print result
 print(xDict)
 
 
-
-
-# # T=10
-# # n=0
-
-# # for n in range(T):
-# #     xDict["Lev"]=xDict["Lev"]+1
-# #     xDict["Whiskey"]=xDict["Whiskey"]+1
-
-# for key in xDict:
-#     xDict[key]=xDict[key]+10
-
-
-# print(xDict)
-# for key in xDict:
-#     print(key,xDict[key])
+print(punc)
