@@ -11,6 +11,7 @@ def find_key(xDict, key):
 punc=string.punctuation
 def make_word_list(p):
     pl = len(p)
+    ForDeleting=["the","and","or","for","a","of","in","to","is","from"]
     iSep = None
     iBWord = 0
     WordList = []
@@ -21,8 +22,8 @@ def make_word_list(p):
             iSep = i
             myslice=p[iBWord:iSep]
             myslice2=myslice.lower()
-            if myslice2 !="the" and  myslice2 != "a" and len(myslice2)>0:
-                
+            # if myslice2 !="the" and  myslice2 != "a" and myslice2 !="or" and len(myslice2)>0:
+            if myslice2 not in ForDeleting and len(myslice2)>0:
                 WordList.append(myslice2)
             # print("separator space at position", iSep, p[iBWord:iSep])
             iBWord = iSep+1
@@ -39,7 +40,7 @@ def find_mymax_value(p):
     return mykey
     
 # convert tekeyt string to array of tokens
-f = open("data_35a.txt", "r")
+f = open("data_35.txt", "r", encoding="utf8")
 data=f.read()+" "
 # print(data)
 words = make_word_list(data)
@@ -65,3 +66,5 @@ for i in range(dl):
     key_for_max=find_mymax_value(xDict)
     print("found at ===",key_for_max,"value ",xDict[key_for_max])
     xDict.pop(key_for_max)
+    if i>50:
+        break
