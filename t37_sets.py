@@ -1,7 +1,7 @@
 # set operations
 xlist=["a","c","d"]
 ylist=["a","b","c","f"]
-zlist-[]
+zlist=[]
 ly=len(ylist)
 for y in ylist:
     for x in xlist:
