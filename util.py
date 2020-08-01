@@ -57,3 +57,37 @@ def list_sort(p):
                 nswap=nswap+1
         if nswap==1 or nswap==0:
             break
+
+# merge 2 sorted lists into 1
+def merge_lists(xp,yp):
+    zp=[]
+    print("xp=",xp)
+    print("yp=",yp)
+    ixp=0
+    iyp=0
+    xpl=len(xp)
+    ypl=len(yp)
+    while True:
+        # print(ixp,iyp)
+        
+        if ixp>=xpl and iyp>=ypl:
+            # both lists are finished
+            break
+        if ixp>=xpl:
+            # xplist is over but yplist is not, so take from yp
+            zp.append(yp[iyp])
+            iyp=iyp+1
+            continue
+        if iyp>=ypl:
+            # yplist is over but xplist is not, so take from xp
+            zp.append(xp[ixp])
+            ixp=ixp+1
+            continue
+        if xp[ixp]>yp[iyp]:
+            zp.append(yp[iyp])
+            iyp=iyp+1
+        else:
+            zp.append(xp[ixp])
+            ixp=ixp+1
+        # print(zp)
+    return zp
