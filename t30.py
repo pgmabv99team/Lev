@@ -54,7 +54,6 @@ peoplel = len(people)
 # print(mymax)
 # i = 0
 
-comm
 #     print(people[i].name,people[i].GoodlyOrUngoodly())
 #     if people[i].name=="Whiskey":
 #         people[i].MakeBald()
