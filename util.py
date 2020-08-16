@@ -1,5 +1,6 @@
 
 import string
+import pandas
 # make word list
 punc=string.punctuation
 def make_word_list(p):
@@ -133,13 +134,31 @@ def swap(x,m,n):
     x[n]=a
 
 # swap 2D
-def swap_in_row(x,row,m,n):
-    a=x[row][m]
-    x[row][m]=x[row][n]
-    x[row][n]=a
+def swap_in_row(x,row,old,new):
+    a=x[row][old]
+    x[row][old]=x[row][new]
+    x[row][new]=a
 
 # swap up/down
-def swap_in_column(x,column,m,n):
-    a=x[m][column]
-    x[m][column]=x[n][column]
-    x[n][column]=a
+def swap_in_column(x,column,old,new):
+    a=x[old][column]
+    x[old][column]=x[new][column]
+    x[new][column]=a
+
+
+def make_array(n,m,base):
+    x=[]
+    for j in range(m):
+        row=[]
+        for i in range(n):
+            row.append(base)
+            
+        x.append(row)
+    return x
+        
+        
+
+# res=make_array(5,6)
+# print(pandas.DataFrame(res))
+
+
