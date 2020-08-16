@@ -124,3 +124,22 @@ def print_top_words(filename):
         xDict.pop(key_for_max)
         if i>50:
             break
+
+
+# efficient swap
+def swap(x,m,n):
+    a=x[m]
+    x[m]=x[n]
+    x[n]=a
+
+# swap 2D
+def swap_in_row(x,row,m,n):
+    a=x[row][m]
+    x[row][m]=x[row][n]
+    x[row][n]=a
+
+# swap up/down
+def swap_in_column(x,column,m,n):
+    a=x[m][column]
+    x[m][column]=x[n][column]
+    x[n][column]=a

@@ -28,8 +28,8 @@ yy = [[11, 33, 45],
       [456, 54, 65]]
 xx = [[23, 35, 43],
       [6, 15, 8]]
-# print(xx)
-# print(DataFrame(xx))
+print(xx)
+print(DataFrame(xx))
     
-res=MyFunc(xx)
-print(res)
+# res=MyFunc(xx)
+# print(res)
