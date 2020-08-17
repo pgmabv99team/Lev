@@ -4,15 +4,15 @@ import util
 import numpy
 import pandas
 import winsound
-
+import random
 
 class g:
 
     @staticmethod
     def init():
 
-        g.imax = 6
-        g.jmax = 6
+        # g.imax = 5
+        # g.jmax = 5
         g.base = "-"
         g.x = util.make_array(g.imax, g.jmax, g.base)
 
@@ -30,10 +30,14 @@ class g:
         while True:
 
             print("enter command===========")
-            command = str(input())
+            command = input().lower().strip()
+            
+            
+            
             print("you just entered a command")
 
             if command == "a":
+                
                 if g.j == 0:
                     print("You have reached the boundary-", g.j)
                     util.swap_in_row(g.x, g.i, 0, g.jmax-1)
@@ -45,7 +49,7 @@ class g:
                     g.x[g.i][g.j] = g.trail
                     g.j = g.j-1
                 nmoves += 1
-
+                
             elif command == "d":
                 if g.j == g.jmax-1:
                     print("You have reached the boundary-", g.j)
@@ -96,6 +100,30 @@ class g:
                 print("Turning off  trail")
                 g.trail = g.base
 
+            elif command=="reset":
+                print("Resetting game")
+                g.imax=int(input())
+                g.jmax=int(input())
+                g.init()            
+            
+            elif command=="r":
+             
+                inew=random.randint(0,g.imax-1)
+                jnew=random.randint(0,g.jmax-1)
+
+                print(inew,jnew)
+
+                a=g.x[g.i][g.j]
+                g.x[g.i][g.j]=g.x[inew][jnew]
+                g.x[inew][jnew]=a
+                
+                g.x[g.i][g.j]=g.trail
+                g.i=inew
+                g.j=jnew
+
+                
+
+
             elif command == "stop":
                 print("You have made", nmoves, "moves")
                 break
@@ -109,6 +137,8 @@ class g:
 
             print(pandas.DataFrame(g.x))
 
-
+# end of class
+g.imax=5
+g.jmax=5
 g.init()
 g.run()
