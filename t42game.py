@@ -5,6 +5,7 @@ import numpy
 import pandas
 import winsound
 import random
+import time
 
 class g:
 
@@ -31,7 +32,7 @@ class g:
 
             print("enter command===========")
             command = input().lower().strip()
-            
+            start_time = time.time()
             
             
             print("you just entered a command")
@@ -136,6 +137,7 @@ class g:
                 continue
 
             print(pandas.DataFrame(g.x))
+            print(time.time()-start_time)
 
 # end of class
 g.imax=5
