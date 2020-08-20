@@ -14,6 +14,7 @@ class g:
     def init():
         g.base = "-"
         g.trail = "x"
+        g.tl=4
         g.avatar = 0
         g.x = util.make_array(g.imax, g.jmax, g.base)
 
@@ -23,7 +24,7 @@ class g:
         g.list_pos = []
         g.nmoves = 0
         g.step()
-
+        
     @staticmethod
     def clear():
         irows = 0
@@ -48,36 +49,44 @@ class g:
         g.list_pos.append(pos)
     @staticmethod
     def render():
+        start_time = time.time()
+
         g.clear()
-    
-            # add trail
-        for k in range(len(g.list_pos)):
+        l=len(g.list_pos)
+        # add trail
+        
+        high=len(g.list_pos)
+        low=0
+        if high>=g.tl:
+            low=high-g.tld
+        for k in range(low,high):
+
             print(g.list_pos[k])
             i2 = g.list_pos[k]["i"]
             j2 = g.list_pos[k]["j"]
-            print(i2, j2)
             g.x[i2][j2] = g.list_pos[k]["trail"]
-
+            
+            
         # add avatar
         g.x[g.i][g.j] = g.avatar
+    
+        
         print(pandas.DataFrame(g.x))
+        print(time.time()-start_time)
     @staticmethod
     def run():
 
         while True:
-            pos = {}
-            start_time = time.time()
+            
             g.render()
-            print(time.time()-start_time)
+            
             print("enter command===========")
             command = input().lower().strip()
             
             pos = {}
 
-            print("you just entered a command")
 
             if command == "a":
-
                 if g.j == 0:
                     print("You have reached the boundary-", g.j)
                     g.j = g.jmax-1
@@ -85,6 +94,7 @@ class g:
                 else:
                     g.j = g.j-1
                 g.step()
+
             elif command == "d":
                 if g.j == g.jmax-1:
                     print("You have reached the boundary-", g.j)
@@ -94,7 +104,6 @@ class g:
                 g.step()
 
             elif command == "s":
-
                 if g.i == g.imax-1:
                     print("You have reached the boundary", g.i)
                     g.i = 0
@@ -108,6 +117,13 @@ class g:
                     g.i = g.imax-1
                 else:
                     g.i = g.i-1
+                g.step()
+
+            elif command == "r":
+                inew = random.randint(0, g.imax-1)
+                jnew = random.randint(0, g.jmax-1)
+                g.i = inew
+                g.j = jnew
                 g.step()
 
             elif command == "new":
@@ -128,18 +144,11 @@ class g:
                 g.jmax = int(input())
                 g.init()
 
-            elif command == "r":
-
-                inew = random.randint(0, g.imax-1)
-                jnew = random.randint(0, g.jmax-1)
-                g.i = inew
-                g.j = jnew
-
-                g.step()
-
             elif command == "stop":
                 print("You have made", nmoves, "moves")
                 break
+
+
 
             else:
                 # print("Incorrect command... gm-destruct sequence initiated")
@@ -148,7 +157,6 @@ class g:
                       "Available commands are w, a, s, d, new")
                 continue
 
-            print(time.time()-start_time)
 
 
 # end of class

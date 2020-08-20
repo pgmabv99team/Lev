@@ -1,0 +1,61 @@
+
+xlist=[1,2,10, 5]
+
+# -build tree of XLIST  where child node value >= parent 
+# -attach such children to each parent where above True
+# -for the ready tree find the biggest depth
+
+# t=tree_init()
+
+# for x in xlist
+#   tree_attach(t,x)
+
+# ml=tree_scan(t) for longest
+
+
+class t:
+    @staticmethod
+    def __init__ (self, v):
+        self.v=value
+        self.children=[]
+        self.level=0
+
+    @staticmethod
+    def t_add_child(self,v):
+        child=t(v)
+        self.children.append(child)
+        child.level=self.level+1
+
+    @staticmethod
+    def leaf_scan(t,v):
+        if len(t.children)==0:
+            #leaf .see if we add v
+            if t.v <= v:
+                t.t_add_child(v)
+            
+        else :
+            #iterate over children
+            for child in t.children:
+                t.leaf_scan(child)
+
+    @staticmethod
+    def leaf_scan_2(t):
+         if len(t.children)==0:
+             
+            if t.level>max_lev:
+                max_lev=t.level
+            
+        else :
+            #iterate over children
+            for child in t.children:
+                t.leaf_scan_2(child)
+
+
+root=t(x[0])
+xlen=len(xlist)
+for i in range(1:xlen-1):
+    leaf_scan(root,x[i])
+
+t.max_lev=0
+leaf_scan_2(root)
+
