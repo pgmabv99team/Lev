@@ -7,7 +7,7 @@ ylen=len(y)
 #non empty len
 xlen2=xlen
 while (x[xlen2-1]==0):
-    xlen2-=xlen2
+    xlen2-=1
 
 ix=0
 for iy in range(ylen):
