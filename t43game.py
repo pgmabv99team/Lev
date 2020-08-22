@@ -14,7 +14,7 @@ class g:
     def init():
         g.base = "-"
         g.trail = "x"
-        g.tl=4
+        g.tl = 4
         g.avatar = 0
         g.x = util.make_array(g.imax, g.jmax, g.base)
 
@@ -24,7 +24,7 @@ class g:
         g.list_pos = []
         g.nmoves = 0
         g.step()
-        
+
     @staticmethod
     def clear():
         irows = 0
@@ -43,48 +43,50 @@ class g:
         g.nmoves += 1
 
         pos = {}
-        pos["i"] = g.i
-        pos["j"] = g.j
+        pos["rownum"] = g.i
+        pos["colnum"] = g.j
         pos["trail"] = g.trail
+        pos["avatar"]=g.avatar
         g.list_pos.append(pos)
+
     @staticmethod
     def render():
         start_time = time.time()
 
         g.clear()
-        l=len(g.list_pos)
+        l = len(g.list_pos)
         # add trail
-        
-        high=len(g.list_pos)
-        low=0
-        if high>=g.tl:
-            low=high-g.tld
-        for k in range(low,high):
+
+        high = len(g.list_pos)
+        low = 0
+        if high >= g.tl:
+            low = high-g.tl
+        for k in range(low, high):
 
             print(g.list_pos[k])
-            i2 = g.list_pos[k]["i"]
-            j2 = g.list_pos[k]["j"]
+            i2 = g.list_pos[k]["rownum"]
+            j2 = g.list_pos[k]["colnum"]
             g.x[i2][j2] = g.list_pos[k]["trail"]
-            
-            
+
         # add avatar
+        g.i=g.list_pos[high-1]["rownum"]
+        g.j=g.list_pos[high-1]["colnum"]
+        g.avatar=g.list_pos[high-1]["avatar"]
         g.x[g.i][g.j] = g.avatar
-    
-        
         print(pandas.DataFrame(g.x))
         print(time.time()-start_time)
+
     @staticmethod
     def run():
 
         while True:
-            
+
             g.render()
-            
+
             print("enter command===========")
             command = input().lower().strip()
-            
-            pos = {}
 
+            pos = {}
 
             if command == "a":
                 if g.j == 0:
@@ -129,6 +131,7 @@ class g:
             elif command == "new":
                 print("Enter new  avatar")
                 g.avatar = input()
+                g.step()
 
             elif command == "trail":
                 print("Enter new  trail symbol")
@@ -138,6 +141,12 @@ class g:
                 print("Turning off  trail")
                 g.trail = g.base
 
+            elif command == "u":
+                if len(g.list_pos) > 0:
+                    g.list_pos.pop()
+                else:
+                    print("ERR:Cannot undo")
+
             elif command == "reset":
                 print("Resetting game")
                 g.imax = int(input())
@@ -145,10 +154,8 @@ class g:
                 g.init()
 
             elif command == "stop":
-                print("You have made", nmoves, "moves")
+                print("You have made", g.nmoves, "moves")
                 break
-
-
 
             else:
                 # print("Incorrect command... gm-destruct sequence initiated")
@@ -156,7 +163,6 @@ class g:
                 print("ERROR: You have pressed", command,
                       "Available commands are w, a, s, d, new")
                 continue
-
 
 
 # end of class
