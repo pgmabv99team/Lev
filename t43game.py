@@ -21,7 +21,7 @@ class g:
         g.i = 0
         g.j = 0
 
-        g.list_pos = []
+        g.hist = []
         g.nmoves = 0
         g.step()
 
@@ -47,31 +47,31 @@ class g:
         pos["colnum"] = g.j
         pos["trail"] = g.trail
         pos["avatar"]=g.avatar
-        g.list_pos.append(pos)
+        g.hist.append(pos)
 
     @staticmethod
     def render():
         start_time = time.time()
 
         g.clear()
-        l = len(g.list_pos)
+        l = len(g.hist)
         # add trail
 
-        high = len(g.list_pos)
+        high = len(g.hist)
         low = 0
         if high >= g.tl:
             low = high-g.tl
         for k in range(low, high):
 
-            print(g.list_pos[k])
-            i2 = g.list_pos[k]["rownum"]
-            j2 = g.list_pos[k]["colnum"]
-            g.x[i2][j2] = g.list_pos[k]["trail"]
+            print(g.hist[k])
+            i2 = g.hist[k]["rownum"]
+            j2 = g.hist[k]["colnum"]
+            g.x[i2][j2] = g.hist[k]["trail"]
 
         # add avatar
-        g.i=g.list_pos[high-1]["rownum"]
-        g.j=g.list_pos[high-1]["colnum"]
-        g.avatar=g.list_pos[high-1]["avatar"]
+        g.i=g.hist[high-1]["rownum"]
+        g.j=g.hist[high-1]["colnum"]
+        g.avatar=g.hist[high-1]["avatar"]
         g.x[g.i][g.j] = g.avatar
         print(pandas.DataFrame(g.x))
         print(time.time()-start_time)
@@ -142,8 +142,8 @@ class g:
                 g.trail = g.base
 
             elif command == "u":
-                if len(g.list_pos) > 0:
-                    g.list_pos.pop()
+                if len(g.hist) > 0:
+                    g.hist.pop()
                 else:
                     print("ERR:Cannot undo")
 
