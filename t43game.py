@@ -148,9 +148,19 @@ class g:
                     print("ERR:Cannot undo")
 
             elif command == "reset":
-                print("Resetting game")
-                g.imax = int(input())
-                g.jmax = int(input())
+                
+                v2=input("Enter 2 Dimensions ").split()
+                
+                if len(v2)>2 or len(v2)<1:
+                    print("ERR: Number of Dimensions Expected 2 or 1. Given",len(v2))
+                    continue
+                
+                g.imax =int(v2[0])
+                if len(v2)==1:
+                    print("WRN: Using 1 Number for 2 Dimensions")
+                    g.jmax=int(v2[0])
+                else:
+                    g.jmax=int(v2[1])
                 g.init()
 
             elif command == "stop":
