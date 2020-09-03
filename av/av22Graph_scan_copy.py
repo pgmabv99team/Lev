@@ -3,19 +3,24 @@
 class vrt_t:
     def __init__(self,val):
         self.val=val
+    def __del__(self):
+        print("deleting vertex",self.val)
 
 class edg_t:
 
     def __init__(self,vrt1,vrt2):
         self.vrt1=vrt1
         self.vrt2=vrt2
-
+    def __del__(self):
+        print("deleting edge",self.vrt1)   
 
 class grp_t:
     def __init__(self, name):
         self.name=name
         self.vrt_list=[]
         self.edg_list=[]
+    def __del__(self):
+        print("deleting", self.name)
 
     def vrt_add(self, vrt_p):
         self.vrt_list.append(vrtp)
@@ -203,6 +208,9 @@ class test_t:
         grh_c=grp_p.grp_copy2()
         grh_c.edg_show()
         grh_c.vrt_scan_all()
+
+        # del(grp_p)
+        print("last statement")
       
     
 
