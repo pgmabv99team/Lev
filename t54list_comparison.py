@@ -29,46 +29,62 @@ def compare(p,k):
 # res=compare(x,y) 
 
 # print(x,y,res)
-x=[2,3]              
-y=[2,3,2,3]    
+# x=[2,3]              
+# y=[2,3,2,3]    
+y="dogcatwhattac"
+x="cat"
 
-def reverse(p):
-    i=0
-    mid=len(p)/2
+# def myreverse(p):
+#     i=0
+#     mid=len(p)/2
+#     high=len(p)
+#     while i<mid:
+#         a=p[i]
+#         p[i]=p[high-1]
+#         p[high-1]=a
+#         i=i+1
+#         high=high-1
+
+def myreverse_string(p):
     high=len(p)
-    while i<mid:
-        a=p[i]
-        p[i]=p[high-1]
-        p[high-1]=a
-        i=i+1
-        high=high-1
+    i=high-1
+    low=0
+    p2=""
+    while i>=low:
+        p2=p2+p[i]
+        i=i-1
+    return p2
 
 
 
 
 
 
-def count_sublists(p,k,p2):
+
+def count_sublists(p,p2):
     pl=len(p)
     i=0
     i2=0
     good=0
     while i<pl-1:
         low=i
-        if i+k<=pl:
-            high=i+k
+        if i+len(p2)<=pl:
+            high=i+len(p2)
         else:
             break
-        t=[]
-        for i2 in range(low,high,1):
-            t.append(p[i2])
+        # t=[]
+        # for i2 in range(low,high,1):
+        #     t.append(p[i2])
+        t=p[low:high]
         print(t)
         if t==p2:
             good +=1
             print(t,p2)
         else:
-            reverse(t)
-            if t==p2:
+            res=myreverse_string(t)
+            print(res)
+            # t.reverse()
+            if res==p2:
                 good +=1
                 print(t,p2)
 
@@ -77,5 +93,6 @@ def count_sublists(p,k,p2):
     print(good)
             
 
-count_sublists(y,len(x),x)
-        
+count_sublists(y,x)
+
+# print(myreverse_string(y))
