@@ -57,28 +57,81 @@ def paren_stack(p):
         return False
 # print(paren_stack(x))
 
-z="1+24+34-56"
+def find_number(p,i):
+    pl=len(p)  
+    j=i
+    while j<pl:
+        if p[j]=="+" or p[j]=="-":
+            break
+        j +=1
+    t=p[i:j]
+    return j,t
+
+
+
 def calc(p):
     pl=len(p)
-    i=1
-    mysum=int(p[0])
+    res=find_number(p,0)
+    i=res[0]
+    number=res[1]
+    mysum=int(number)
     # print(mysum)
     while i<pl-1:
-        j=i+1
-        while j<pl:
-            if p[j]=="+" or p[j]=="-":
-                break
-            
-            j +=1
-        t=p[i+1:j]
-        print("t",t)
-        print("operator",p[i])
+        operator=p[i]
+        print("operator",operator)
+        i +=1
+        res=find_number(p,i)
+        j=res[0]
+        number=res[1]
+        print("number",number)
         
-        if p[i]=="+":
-            mysum=mysum+int(t)
-        elif p[i]=="-":
-            mysum=mysum-int(t)
-        print(p[i],t,mysum)
+        
+        if operator=="+":
+            mysum=mysum+int(number)
+        elif operator=="-":
+            mysum=mysum-int(number)
+        print(operator,number,mysum)
         i=j
     print(mysum)
-calc(z)
+# calc(z)
+z="12+11-2-3"
+def calc_stack(p):
+    pl=len(p)
+    stknum=[]
+    stkop=[]
+    i=0
+    res=find_number(p,0)
+    i=res[0]
+    number=int(res[1])
+    stknum.append(number)
+    while i<pl:
+        
+        operator=p[i]
+        i +=1
+        stkop.append(operator)
+        res=find_number(p,i)
+        j=res[0]
+        number=int(res[1])
+        stknum.append(number)
+        
+        
+        
+        i=j
+    print("numbers",stknum)
+    print("operators",stkop)
+
+    while len(stkop)>0:
+        print(stknum,stkop)
+        operator=stkop.pop(0)
+        num1=stknum.pop(0)
+        num2=stknum.pop(0)
+        if operator=="+":
+            num=num2+num1
+        elif operator=="-":
+            num=num1-num2
+        else:
+            print("Error")
+        stknum.insert(0,num)
+    print(stknum)
+
+calc_stack(z)
