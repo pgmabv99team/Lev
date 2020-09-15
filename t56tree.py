@@ -4,19 +4,30 @@ class Person:
         self.age=age
         self.hair_color="black"
         self.children=[]
+        self.parent=None
+        # self.ancestors=[]
         print("__init__ called",self,self.name,self.age)
         
     def info(self,depth):
         temp="++"
-        
-        print(depth*temp,self.name,self.age,self.hair_color)
+
+        i_parent=self.parent
+        temp_ancestors=[]
+        while i_parent!=None:
+            temp_ancestors.append(i_parent.name)
+            i_parent=i_parent.parent
+        print(depth*temp,self.name,self.age,self.hair_color,temp_ancestors)
 
     def set_hair_color(self,hair):
         self.hair_color=hair
     
-    def add_child(self,node):
-        print("add_child called",node.name,"to",self.name)
-        self.children.append(node)
+    def add_child(self,child):
+        print("add_child called",child.name,"to",self.name)
+        self.children.append(child)
+        # child.ancestors=self.ancestors.copy()
+        # child.ancestors.insert(0,self.name)
+        child.parent=self
+
 
 class family_t:
     def __init__(self,family_name):
@@ -30,7 +41,7 @@ class family_t:
         p_n.add_child(p_g)
 
         p_s=Person("Shura",41)
-        p_g.add_child(p_s)
+    
 
         p_li=Person("Liuba",22)
         p_k.add_child(p_li)
@@ -38,8 +49,10 @@ class family_t:
         p_ko=Person("Kostia",46)
         p_g.add_child(p_ko)
 
-        p_l=Person("Liova",12)
+        p_l=Person("Liova",12)  
         p_s.add_child(p_l)
+
+        p_g.add_child(p_s)
 
         p_b=Person("Birb",1.6)
         p_l.add_child(p_b)
@@ -55,12 +68,14 @@ class family_t:
             self.set_hair_color(person.children[i])
 
 
-    def info(self,person,depth):
+    def info_f(self,person,depth):
         # print("enter")
         person.info(depth)
         for i in range(len(person.children)):
             # person.children[i].info()
-            self.info(person.children[i],depth+1)
+            child=person.children[i]
+            self.info_f(child,depth+1)
+        return
 
         # print("exit")
 
@@ -69,6 +84,6 @@ class family_t:
 family=family_t("Clan Walrus") 
 
 family.set_hair_color(family.family_root)
-family.info(family.family_root,0)
+family.info_f(family.family_root,0)
 
 
