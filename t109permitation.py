@@ -40,10 +40,20 @@ def perm2(p,m):
                     cnt +=1
                     print(p[i0],p[i1],p[i2])
     print(cnt)
+
+def list_2_string(p):
+    x=""
+    for i in range(len(p)):
+        x=x+str(p[i])
+    return x
+
+
 # permitation with recursion
 def perm2_rec(p,m,ids,depth):
-    pl=len(p)
     global cnt
+    global mydict
+    pl=len(p)
+    
     for i0 in range(pl):
         ids[depth]=i0
         if depth==m-1:
@@ -51,10 +61,24 @@ def perm2_rec(p,m,ids,depth):
             if is_unique(ids):
                 # ids are unique
                 cnt +=1
-                print(ids)
+                pids=[]
                 for id in ids:
-                    print(p[id],end=" ")
-                print("\n")
+                    pids.append(p[id])
+                pids_str=list_2_string(pids)
+                pids_sort=sorted(pids)
+                pids_sort_str=list_2_string(pids_sort)
+                print(pids,pids_sort,pids_sort_str)
+                #use sorted as key
+                #accumulate of unsorted as value
+                key=pids_sort_str
+                val=pids_str
+                if key  not in mydict:
+                    mydict[key]=val
+                else:
+                    mydict[key]=mydict[key]+","+val
+                               
+
+                
         else:
             # depth not reached. call func again
             perm2_rec(p,m,ids,depth+1)
@@ -65,8 +89,13 @@ ids=[0]*m
 depth=0    
 global cnt
 cnt=0
+global mydict
+mydict={}
+
 perm2_rec(x,m,ids,depth) 
-print(cnt)
+print(cnt,len(mydict))
+for x in mydict:
+    print(x,"=",mydict[x])
 
 
 # arr=[1]
