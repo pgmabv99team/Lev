@@ -12,15 +12,16 @@ def perm(p):
         i0 +=1
 
 
-def is_unique(nums):
-    nl=len(nums)
+def is_unique(objs):
     x={}
-    for num in range(nl):
-        mykey=nums[num]
+    for obj in objs:
+        mykey=obj
+        if mykey==None:
+            continue
         if mykey in x:
             return False
         else:
-            x[mykey]=nums[num]
+            x[mykey]=obj
     return True
 
 
@@ -53,9 +54,13 @@ def perm2_rec(p,m,ids,depth):
     global cnt
     global mydict
     pl=len(p)
-    
+    filler="--"*(depth+1)
     for i0 in range(pl):
         ids[depth]=i0
+        print(filler,p[i0],"ids",ids)
+        if is_unique(ids)==False:
+            print(filler,"Early rejection: double found")
+            continue
         if depth==m-1:
             # full depth reached
             if is_unique(ids):
@@ -67,7 +72,7 @@ def perm2_rec(p,m,ids,depth):
                 pids_str=list_2_string(pids)
                 pids_sort=sorted(pids)
                 pids_sort_str=list_2_string(pids_sort)
-                print(pids,pids_sort,pids_sort_str)
+                print(filler,"accepted",pids,pids_sort,pids_sort_str)
                 #use sorted as key
                 #accumulate of unsorted as value
                 key=pids_sort_str
@@ -76,17 +81,21 @@ def perm2_rec(p,m,ids,depth):
                     mydict[key]=val
                 else:
                     mydict[key]=mydict[key]+","+val
-                               
+            else:
+                print(filler,"rejected")              
 
                 
         else:
             # depth not reached. call func again
             perm2_rec(p,m,ids,depth+1)
+    ids[depth]=None
+    # return None
 
-x=['a','b','c','d','e']
+# main line
+x=['a','b','c','d']
 m=3
-ids=[0]*m
-depth=0    
+ids=[None]*m
+depth=0                 
 global cnt
 cnt=0
 global mydict
