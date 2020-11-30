@@ -14,13 +14,24 @@ def solution(p):
             if sp[i2]=="0":
                 good +=1
             else:
+                x.append(good)
+                
                 break
             i2 +=1
         # append length of "0" pattern to x
 
-        x.append(good)
+         
         i +=1
-    return max(x)
-print(bin(32))
-print(solution(32))
+    if len(x)==0:
+        mymax=0
+    else:
+        mymax=max(x)
+    print(x)
+    return mymax
+i=345
+print(bin(i),solution(i))
+
+i=31
+print(bin(i),solution(i))
+
         
