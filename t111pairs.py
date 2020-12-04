@@ -34,4 +34,4 @@ print(x,pairs(x))
 x=[2,2,2,2,1]
 print(x,pairs(x))
 
-y=6
+y=7
