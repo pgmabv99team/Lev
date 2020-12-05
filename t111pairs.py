@@ -34,8 +34,9 @@ print(x,pairs(x))
 x=[2,2,2,2,0]
 print(x,pairs(x))
 
-x=[1,2,2,2,2]
+x=[11,2,2,2,2]
 print(x,pairs(x))
 
 #av change 3
 # lv change 200
+#av change 4
