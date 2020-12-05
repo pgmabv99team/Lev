@@ -28,7 +28,7 @@ print(x,pairs(x))
 x=[3,3,4,4,1]
 print(x,pairs(x))
 
-x=[2,2,5,2,2]
+x=[2,2,7,2,2]
 print(x,pairs(x))
 
 x=[2,2,2,2,1]
@@ -37,4 +37,4 @@ print(x,pairs(x))
 x=[1,2,2,2,2]
 print(x,pairs(x))
 
-y=8
+#av change 1
