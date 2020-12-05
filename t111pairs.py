@@ -28,13 +28,13 @@ print(x,pairs(x))
 x=[3,3,4,4,1]
 print(x,pairs(x))
 
-x=[2,2,7,2,2]
+x=[2,2,9,2,2]
 print(x,pairs(x))
 
-x=[2,2,2,2,1]
+x=[2,2,2,2,0]
 print(x,pairs(x))
 
 x=[1,2,2,2,2]
 print(x,pairs(x))
 
-#av change 1
+#av change 3
