@@ -10,7 +10,7 @@ def in_list_man(p):
         if i==1:
             return True
 
-d=[0]*(10**8)
+d=[0]*(10**5)
 d[len(d)-1]=1
 
 
@@ -20,7 +20,9 @@ d[len(d)-1]=1
 import time
 start_time = time.time()
 print(in_list(d))
-print("--- %s seconds ---" % (time.time() - start_time))
+t_elapsed=(time.time() - start_time)
+print("--- %s seconds ---" % t_elapsed)
+print(t_elapsed*len(d)*4)
 
 start_time = time.time()
 print(mysort(d))
