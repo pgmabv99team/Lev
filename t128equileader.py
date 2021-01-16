@@ -10,7 +10,7 @@ def dominator(p):
             return p[i]
     return None
 
-def solution(p):
+def solution2(p):
     pl=len(p)
     equi_num=0
     for i in range(pl):
