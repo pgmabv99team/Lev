@@ -86,3 +86,4 @@ def solution(p):
     return equi_num
 
 print(solution([4,3,4,4,4,2]))
+#   
