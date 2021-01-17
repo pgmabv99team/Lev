@@ -31,7 +31,15 @@ def solution2(p):
 
 
 
-
+# return key which contains the maximum value.
+# def d_max(p):
+#     max_count=0
+#     max_key=None
+#     for key in p:
+#         if p[key]>max_count:
+#             max_count=p[key]
+#             max_key=key
+#     return max_key,max_count
 
 
 def d_build(p):
@@ -44,36 +52,33 @@ def d_build(p):
             dict[p[i]] +=1
     return dict
 
-# return key which contains the maximum value.
-def d_max(p):
-    max_count=0
-    max_key=None
-    for key in p:
-        if p[key]>max_count:
-            max_count=p[key]
-            max_key=key
-    return max_key,max_count
+
 
 def solution(p):
     pl=len(p)
     equi_num=0
     d_begin=d_build(p[0:0])
     d_end=d_build(p[0:])
-    print(d_begin,d_end)
+    # print(d_begin,d_end)
+    max_key_begin=None
     for i in range(pl):
-        v=p[i]
-        d_end[v] -=1
-        if v in d_begin:
-            d_begin[v]=d_begin[v]+1
+        key=p[i]
+        d_end[key] -=1
+        if key in d_begin:
+            d_begin[key]=d_begin[key]+1
         else:
-            d_begin[v]=1
+            d_begin[key]=1
         # print(i,v,d_begin,d_end)
-        res=d_max(d_begin)
-        max_key_begin=res[0]
-        max_count_begin=res[1]
-        res=d_max(d_end)
-        max_key_end=res[0]
-        max_count_end=res[1]
+        if i==0:
+            max_key_begin=key
+        else:
+            if d_begin[key]>d_begin[max_key_begin]:
+                max_key_begin=key
+        max_count_begin=d_begin[max_key_begin]
+
+        max_key_end = max(d_end, key=d_end.get) 
+        max_count_end=d_end[max_key_end]
+
         if max_count_begin>(i+1)/2 and max_count_end>(pl-i-1)/2:
             if max_key_begin==max_key_end:
                 equi_num +=1
