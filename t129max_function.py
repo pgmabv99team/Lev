@@ -14,4 +14,4 @@ def my_abs(a):
 print(max(d,key=my_abs))
 print(max(d,key=lambda x: -99 if x % 3 == 0 else abs(x)))
 # lambda x: True if x % 2 == 0 else False
-d="bird"
+d="birdaabbbbb"
