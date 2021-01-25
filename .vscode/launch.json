@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch t133",
+            "request": "launch",
+            "mainClass": "t133",
+            "projectName": "Lev_4c4c16a2"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
