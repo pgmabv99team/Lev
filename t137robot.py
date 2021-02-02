@@ -44,27 +44,82 @@ def mydraw(test):
 # time.sleep(50)  
 
 
-def robot1(i,j,n,m,p):
-    if i<n-1:
-        i +=1
-        p[i][j]=1
-        robot1(i,j,n,m,p)
-        p[i][j]=0
-        i -=1
+# def robot1(i,j,n,m,p):
+#     if i<n-1:
+#         i +=1
+#         p[i][j]=1
+#         robot1(i,j,n,m,p)
+#         p[i][j]=0
+#         i -=1
     
-    if j<m-1:
-        j +=1
-        p[i][j]=1
-        robot1(i,j,n,m,p)
-        p[i][j]=0
-        j -=1
-    if i==(n-1) and j==(m-1):
-        mydraw(p)
-        return 
-n=3
-m=4
+#     if j<m-1:
+#         j +=1
+#         p[i][j]=1
+#         robot1(i,j,n,m,p)
+#         p[i][j]=0
+#         j -=1
+#     if i==(n-1) and j==(m-1):
+#         mydraw(p)
+#         return 
+# n=3
+# m=4
 
+# p= np.full((n,m),0)
+# p[0][0]=1
+# robot1(0,0,n,m,p)
+# time.sleep(50)  
+
+def robot2(i,j,n,m,step_list,dead_list,p):
+    
+    if i<n-1:
+        c=[i+1,j]
+        if c not in dead_list:
+            step_list.append("d")
+            i +=1
+            robot2(i,j,n,m,step_list,dead_list,p)
+            i -=1
+            step_list.pop()
+    if j<m-1:
+        c=[i,j+1]
+        if c not in dead_list:
+            step_list.append("r")
+            j +=1
+            robot2(i,j,n,m,step_list,dead_list,p)
+            j -=1
+            step_list.pop()
+    if i==(n-1) and j==(m-1):
+        print(step_list)
+        i1=0
+        j1=0
+        p[i1][j1]=9
+        for step in step_list:
+            if step=="r":
+                j1 +=1
+
+            if step=="d":
+                i1 +=1
+            p[i1][j1]=9
+        mydraw(p)
+        
+
+
+  
+n=3
+m=3
 p= np.full((n,m),0)
-p[0][0]=1
-robot1(0,0,n,m,p)
-time.sleep(50)  
+
+
+
+step_list=[]
+# dead_list=[[2,0],[1,1],[0,1]]
+# dead_list=[[2,2]]
+dead_list=[[1,1],[2,0]]
+for dead in dead_list:
+    i=dead[0]
+    j=dead[1]
+    p[i][j]=1
+print(p)
+mydraw(p)
+
+robot2(0,0,n,m,step_list,dead_list,p)
+time.sleep(50)
