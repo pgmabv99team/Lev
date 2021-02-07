@@ -92,11 +92,30 @@ def robot3(n):
     #     p[i][n-1-i]=7
     #     mydraw(p)
     
-    for i in range(n):
-        p[i][int(n/2)]=2
-        p[int(n/2)][i]=2
-        p[i][i]=7
-        p[i][n-1-i]=7
+    # for i in range(int(n/2),-1,-1):
+    #     p[i][int(n/2)]=2
+    #     p[int(n/2)][i]=2
+    #     p[i][i]=7
+    #     p[n-1-i][n-1-i]=7
+
+    #     # p[(int(n/2))-i-1][(int(n/2))-i-1]=7
+    #     # p[(int(n/2))+i][(int(n/2))+i]=7
+        
+
+    #     # p[i][n-1-i]=8
+    #     # p[n-1-i][i]=8
+
+    #     mydraw(p)
+
+    # for i in range(n):
+    #     p[0][i]=1
+    #     p[n-1][n-1-i]=2
+    #     p[i][n-1]=3
+    #     p[n-1-i][0]=4
+    #     mydraw(p)
+    for k in range(n):
+        for i in range(k,n-k):
+            p[k][i]=1
         mydraw(p)
-robot3(50)
+robot3(51)
 time.sleep(50)
