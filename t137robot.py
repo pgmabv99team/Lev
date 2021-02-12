@@ -10,7 +10,7 @@ def mydraw(test):
     plt.imshow(test)
     plt.colorbar()
     plt.show(block=False)
-    plt.pause(.0000001)
+    plt.pause(.001)
 
 
 def visual(n, m, step_list, dead_list):
@@ -74,8 +74,8 @@ dead_list = []
 # robot2(0,0,n,m,step_list_1,dead_list,step_list_2)
 # time.sleep(50)
 
-def robot3(n):
-    p = np.full((n, n), 0)
+def robot3(n,m,stop):
+    p = np.full((n, m), 0)
     # for i in range(n):
     #     p[i][i]=2
     #     mydraw(p)
@@ -119,31 +119,65 @@ def robot3(n):
     j = 0
 
     istep = 1
-    jstep = 0
-    print(p)
+    jstep=1
+    break_time=0
     while True:
-        
-        if istep > 0:
-            p[i][j] = 1
-            mydraw(p)
-            print(p)
-            if i+istep <= n-1:
-                i += istep
-                
-                
-            else:
-                istep=-istep
+        # time.sleep(1)
+
+        color = 4
         if istep<0:
-            p[i][j]=2
-            mydraw(p)
-            print(p)
-            if i+istep>=0:
-                i +=istep
-                
+            color = 9
+
+        p[i][j] = color
+        # mydraw(p)
+        # print(p)
+        # print(i)
+        # check current direction
+        if istep > 0:
+            # Did we hit the upper limit?
+            if i+istep <= n-1:
+                # No, keep going.
+                i += istep
             else:
-                istep=-istep
-    #    mydraw(p)
+                # stay in place, reverse direction
+                istep = -istep
+                mydraw(p)
+        else:
+            #  Did we hit lower limt???!?!!?!?!?
+            if i+istep >= 0:
+                i += istep
+                # No!
+            else:
+                istep = -istep
+                mydraw(p)
+                # Stay hydrated
+                break_time +=1
+        # check current direction
+        if jstep > 0:
+            # Did we hit the upper limit?
+            if j+jstep <= m-1:
+                # No, keep going.
+                j += jstep
+            else:
+                # stay in place, reverse direction
+                jstep = -jstep
+                jstep -=1
+                mydraw(p)
+        else:
+            #  Did we hit lower limt???!?!!?!?!?
+            if j+jstep >= 0:
+                j += jstep
+                # No!
+            else:
+                jstep = -jstep
+                jstep +=1
+                mydraw(p)
+                # Stay hydrated
+                break_time +=1
+        if break_time==stop:
+            break
 
 
-robot3(10)
+
+robot3(100,200,15)
 time.sleep(50)
