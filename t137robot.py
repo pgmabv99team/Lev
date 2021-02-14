@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-
+import math
 from numpy.core.shape_base import block
 
 
@@ -179,5 +179,34 @@ def robot3(n,m,stop):
 
 
 
-robot3(100,200,15)
+# robot3(100,200,15)
+# time.sleep(50)
+
+def robot4(n,k,p):
+    
+    ctr=int(n/2)
+    for i in range(ctr-k,ctr+k+1):
+        p[i][ctr-k]=1
+        p[ctr-k][i]=2
+        p[i][ctr+k]=3
+        p[ctr+k][i]=4
+
+        mydraw(p)
+        print(p)
+# robot4(50,12)
+# time.sleep(50)
+# n=50
+# p=np.full((n, n), 0)
+# for k in range(0,15,2):
+#     robot4(n,k,p)
+
+def robot5(n):
+    p=np.full((n, n), 0)
+    for i in range(n):
+        j=int(math.sqrt(n**2-i**2))-1
+        print(i,j)
+        p[i][j]=1
+    mydraw(p)
+    
+robot5(1000)
 time.sleep(50)
