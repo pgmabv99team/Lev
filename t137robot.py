@@ -206,7 +206,12 @@ def robot5(n):
         j=int(math.sqrt(n**2-i**2))-1
         print(i,j)
         p[i][j]=1
+
+    for j in range(n):
+        i=int(math.sqrt(n**2-j**2))-1
+        print(i,j)
+        p[i][j]=1
     mydraw(p)
     
-robot5(1000)
+robot5(500)
 time.sleep(50)
